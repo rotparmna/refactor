@@ -2,29 +2,27 @@
 {
     public class GeneratePrimeNumber
     {
-        public int QuantityToGenerate { get; set; }
-
-        public int[] NumbersGenerated { get; set; }
-
         public GeneratePrimeNumber(int quantityToGenerate)
         {
             this.QuantityToGenerate = quantityToGenerate;
         }
+        
+        public int QuantityToGenerate { get; set; }
+
+        public int[] NumbersGenerated { get; private set; }
 
         public void Generate()
         {
             int K = 1;
-            int M = this.QuantityToGenerate;
             int SQUARE = 9;
             int J = 1;
             int ORD = 2;
-            int ORDMAX = 30;
-            int[] MULT = new int[ORDMAX + 1];
-            int[] P = new int[M + 1];
-            int N = 0;
-            P[1] = 2;
+            int[] MULT = new int[31];
+            this.NumbersGenerated = new int[this.QuantityToGenerate + 1];
+            int N;
+            this.NumbersGenerated[1] = 2;
             bool JPRIME;
-            while (K < M)
+            while (K < this.QuantityToGenerate)
             {
                 do
                 {
@@ -32,7 +30,7 @@
                     if (J == SQUARE)
                     {
                         ORD++;
-                        SQUARE = P[ORD] * P[ORD];
+                        SQUARE = this.NumbersGenerated[ORD] * this.NumbersGenerated[ORD];
                         MULT[ORD - 1] = J;
                     }
                     N = 2;
@@ -40,16 +38,15 @@
                     while (N < ORD && JPRIME)
                     {
                         while (MULT[N] < J)
-                            MULT[N] += P[N] + P[N];
+                            MULT[N] += this.NumbersGenerated[N] + this.NumbersGenerated[N];
                         if (MULT[N] == J)
                             JPRIME = false;
                         N++;
                     }
                 } while (!JPRIME);
                 K++;
-                P[K] = J;
+                this.NumbersGenerated[K] = J;
             }
-            this.NumbersGenerated = P;
         }
     }
 }
