@@ -56,16 +56,16 @@ namespace Masiv.Printer.Refactor
             PAGEOFFSET = 1;
             while (PAGEOFFSET <= M)
             {
-                Console.WriteLine("The First ");
-                Console.WriteLine(M.ToString());
-                Console.WriteLine(" Prime Numbers === Page ");
-                Console.WriteLine(PAGENUMBER.ToString());
+                Console.Write("The First ");
+                Console.Write(M.ToString());
+                Console.Write(" Prime Numbers === Page ");
+                Console.Write(PAGENUMBER.ToString());
                 Console.WriteLine("\n");
                 for (ROWOFFSET = PAGEOFFSET; ROWOFFSET <= PAGEOFFSET + RR - 1; ROWOFFSET++)
                 {
                     for (C = 0; C <= CC - 1; C++)
                         if (ROWOFFSET + C * RR <= M)
-                            Console.WriteLine("%10d", P[ROWOFFSET + C * RR]);
+                            Console.Write(P[ROWOFFSET + C * RR].ToString().PadLeft(10));
                     Console.WriteLine();
                 }
                 Console.WriteLine("\f");
