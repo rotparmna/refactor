@@ -13,39 +13,18 @@
 
         public void Generate()
         {
-            int K = 1;
-            int SQUARE = 9;
-            int J = 1;
-            int ORD = 2;
-            int[] MULT = new int[31];
+            int i = 1;
+            int number = 1;
             this.NumbersGenerated = new int[this.QuantityToGenerate + 1];
-            int N;
             this.NumbersGenerated[1] = 2;
-            bool JPRIME;
-            while (K < this.QuantityToGenerate)
+            while (i < this.QuantityToGenerate)
             {
                 do
                 {
-                    J += 2;
-                    if (J == SQUARE)
-                    {
-                        ORD++;
-                        SQUARE = this.NumbersGenerated[ORD] * this.NumbersGenerated[ORD];
-                        MULT[ORD - 1] = J;
-                    }
-                    N = 2;
-                    JPRIME = true;
-                    while (N < ORD && JPRIME)
-                    {
-                        while (MULT[N] < J)
-                            MULT[N] += this.NumbersGenerated[N] + this.NumbersGenerated[N];
-                        if (MULT[N] == J)
-                            JPRIME = false;
-                        N++;
-                    }
-                } while (!JPRIME);
-                K++;
-                this.NumbersGenerated[K] = J;
+                    number += 2;
+                } while (!number.IsPrime());
+                i++;
+                this.NumbersGenerated[i] = number;
             }
         }
     }
